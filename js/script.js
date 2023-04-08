@@ -1,3 +1,5 @@
+
+
 const menu = [
     {
         id: 1,
@@ -41,84 +43,93 @@ const menu = [
 const card = document.querySelector('.cards');
 const btn = document.querySelector('.btn-menu');
 
-window.addEventListener("DOMContentLoaded", filtroTodo);
+window.addEventListener("DOMContentLoaded", mostrarTodoMenu);
 
 btn.addEventListener('click', botonFiltrado);
 
 // Filtra los productos en el DOM
 function botonFiltrado(e) {
+    if (e.target.innerHTML === 'Todo') {
+        mostrarTodoMenu();
+    };
     if (e.target.innerHTML === 'Comida') {
         filtroComida();
-    }
-    if (e.target.innerHTML === 'Bebidas') {
+    };
+    if (e.target.innerHTML === 'Bebibas') {
         filtroBebidas();
-    }
-    console.log(e.target.innerHTML);
+        console.log("le diste en bebidas")
+    };
+    if (e.target.innerHTML === 'Postres') {
+        filtroPostres();
+        console.log("le diste en Postres")
+    };
 }
 
-
-// funciones que filtrar la comida por su categoria
-function filtroTodo() {
+// Muestra todo lo que hay en el menu cuando carga la pagina
+function mostrarTodoMenu() {
     let displayMenu = menu.map(function (item) {
-        return `<div class="card-menu" style="width: 18rem;">
-        <img class="card-img-top" src="${item.img}" alt="Card image cap">
+        return `<div class="card-menu">
+        <img class="card-img-top" src="${item.img}">
         <div class="card-body">
-            <h3>${item.titulo}</h2>
+            <h3>${item.titulo}</h3>
             <h5>$${item.precio}</h4>
             <p>${item.desc}</p>
         </div>
       </div>`;
     })
     displayMenu = displayMenu.join("");
-    console.log(displayMenu);
-
     card.innerHTML = displayMenu;
 
 }
 
+// funciones que filtrar la comida por su categoria
 function filtroComida() {
     const menuComida = menu.filter((comida) => {
         return comida.categoria === 'Comida'
     });
-    console.log(menuComida)
-    let filtradoComida = menuComida.map(function (filtro) {
-        return `<div class="card-menu" style="width: 18rem;">
-        <img class="card-img-top" src="${filtro.img}" alt="Card image cap">
-        <div class="card-body">
-            <h3>${filtro.titulo}</h2>
-            <h5>$${filtro.precio}</h4>
-            <p>${filtro.desc}</p>
-        </div>
-      </div>`;
-    })
-    limpiarHTML();
-    card.innerHTML = filtradoComida;
+    agregarMenuHTML(menuComida);
 };
 
 function filtroBebidas() {
+    // se comprueba si existe la categoria
     const menuBebidas = menu.filter((bebidas) => {
         return bebidas.categoria === 'Bebidas';
     });
-    console.log(menuBebidas)
-    let filtradoBebidas = menuBebidas.map(function (filtro) {
-        return `<div class="card-menu" style="width: 18rem;">
-        <img class="card-img-top" src="${filtro.img}" alt="Card image cap">
+    agregarMenuHTML(menuBebidas);
+};
+
+function filtroPostres() {
+    // se comprueba si existe la categoria
+    const menuPostres = menu.filter((postres) => {
+        return postres.categoria === 'Postres';
+    });
+    agregarMenuHTML(menuPostres)
+
+}
+
+function agregarMenuHTML(categoria) {
+    let menuFiltrado = categoria.map(function (item) {
+        return `<div class="card-menu">
+        <img class="card-img-top" src="${item.img}">
         <div class="card-body">
-            <h3>${filtro.titulo}</h2>
-            <h5>$${filtro.precio}</h4>
-            <p>${filtro.desc}</p>
+            <h3>${item.titulo}</h3>
+            <h5>$${item.precio}</h5>
+            <p>${item.desc}</p>
         </div>
       </div>`;
     })
-    limpiarHTML();
-    card.innerHTML = filtradoBebidas;
-};
+    menuFiltrado = menuFiltrado.join("");
+    console.log(categoria);
+    card.innerHTML = menuFiltrado;
 
 
-// Limpiador de HTML
-function limpiarHTML() {
-    card.innerHTML = "";
 }
+
+
+
+
+
+
 
 
 
