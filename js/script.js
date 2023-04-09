@@ -1,5 +1,3 @@
-
-
 const menu = [
     {
         id: 1,
@@ -12,7 +10,7 @@ const menu = [
     },
     {
         id: 2,
-        titulo: "huevo",
+        titulo: "Huevo",
         categoria: "Comida",
         precio: 3.9,
         img: "https://imag.bonviveur.com/huevos-rotos-con-jamon-o-huevos-estrellados.jpg",
@@ -30,6 +28,52 @@ const menu = [
     },
     {
         id: 4,
+        titulo: "Juego Verde",
+        categoria: "Bebidas",
+        precio: 20,
+        img: "https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2021/02/receta-jugo-verde-rapido.jpg",
+        desc: `Requisimo juego verde, ideal para desintoxicar el cuerpo`
+
+    },
+    {
+        id: 5,
+        titulo: "Juego de Zanahoria",
+        categoria: "Bebidas",
+        precio: 20,
+        img: "https://cdn2.cocinadelirante.com/sites/default/files/images/2020/10/beneficios-y-propiedades-del-jugo-de-zanahoria.jpg",
+        desc: `Juego de zanahoria con naranja servido en un vaso`
+
+    },
+    {
+        id: 6,
+        titulo: "Agua de Limon",
+        categoria: "Bebidas",
+        precio: 20,
+        img: "https://citrojugo.com.mx/wp-content/uploads/2020/08/jugonfcbig.jpg",
+        desc: `vaso de con agua de limon`
+
+    },
+    {
+        id: 7,
+        titulo: "Agua de Sandia",
+        categoria: "Bebidas",
+        precio: 20,
+        img: "https://www.cardamomo.news/__export/1652031161004/sites/debate/img/2022/05/08/agua-de-sandia.jpeg_1902800913.jpeg",
+        desc: `Agua de sandia, lo puede acompañar con chile`
+
+    },
+    {
+        id: 8,
+        titulo: "Refrescos",
+        categoria: "Bebidas",
+        precio: 20,
+        img: "https://happysumo.com.mx/wp-content/uploads/2018/01/refrescos.png",
+        desc: `Refrescos Coca-Cola, Fanta, Sprite, Naranjada, Munde, Fresca y Limonada`
+
+    },
+
+    {
+        id: 9,
         titulo: "Pastel de Chocolate",
         categoria: "Postres",
         precio: 20,
@@ -79,6 +123,8 @@ function mostrarTodoMenu() {
     })
     displayMenu = displayMenu.join("");
     card.innerHTML = displayMenu;
+    
+
 
 }
 
@@ -88,6 +134,8 @@ function filtroComida() {
         return comida.categoria === 'Comida'
     });
     agregarMenuHTML(menuComida);
+    efectoCarga();
+    
 };
 
 function filtroBebidas() {
@@ -122,14 +170,4 @@ function agregarMenuHTML(categoria) {
     console.log(categoria);
     card.innerHTML = menuFiltrado;
 
-
 }
-
-
-
-
-
-
-
-
-
