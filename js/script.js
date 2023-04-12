@@ -87,10 +87,15 @@ const menu = [
 const card = document.querySelector('.cards');
 const btn = document.querySelector('.btn-menu');
 
-window.addEventListener("DOMContentLoaded", mostrarTodoMenu);
+EventListener();
 
-btn.addEventListener('click', botonFiltrado);
-
+// Se organizan todos los event
+function EventListener() {
+    window.addEventListener("DOMContentLoaded", mostrarTodoMenu);
+    btn.addEventListener('click', botonFiltrado);
+    btnComentario();
+    mostrarCometarios();
+}
 // Filtra los productos en el DOM
 function botonFiltrado(e) {
     if (e.target.innerHTML === 'Todo') {
@@ -123,7 +128,7 @@ function mostrarTodoMenu() {
     })
     displayMenu = displayMenu.join("");
     card.innerHTML = displayMenu;
-    
+
 
 
 }
@@ -135,7 +140,7 @@ function filtroComida() {
     });
     agregarMenuHTML(menuComida);
     efectoCarga();
-    
+
 };
 
 function filtroBebidas() {
@@ -170,4 +175,53 @@ function agregarMenuHTML(categoria) {
     console.log(categoria);
     card.innerHTML = menuFiltrado;
 
+}
+
+// Se abre la ventana delos comentarios
+function btnComentario() {
+    const botonComentarios = document.getElementById('boton-comentarios');
+    const contenedorComentarios = document.getElementById('contenedor-comentarios');
+
+    botonComentarios.addEventListener('click', function () {
+        contenedorComentarios.classList.toggle('oculto');
+
+    });
+
+}
+
+// API - comentarios
+function mostrarCometarios() {
+    const url = 'https://jsonplaceholder.typicode.com/comments';
+    console.log(url);
+    // Realiza la solicitud a la API
+    fetch(url)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`Hubo un Error en la API: ${res.status} ${res.statusText}`);
+            }
+            return res.json();
+        })
+        .then(posts => {
+            const comentario = document.querySelector('.comentario');
+
+            posts.forEach(post => {
+
+                const usuarios = document.createElement('div');
+                usuarios.classList.add("comentarios-usuarios");
+                usuarios.innerHTML = `
+            
+                <h5>Nombre</h5>
+                <p>${post.name}</p>
+                <h5>Correo</h5>
+                <p>${post.email}</p>
+                <h5>Comentario:</h5>
+                <p>${post.body}</p>
+                `;
+           
+                comentario.appendChild(usuarios)
+            });
+        })
+        .catch(error => {
+            console.log('Error al obtener datos:', error);
+        })
 }

@@ -9,8 +9,8 @@ body {
     background-color: var(--cafe);
 }
 
-header {
-    background-color: var(--black);
+header h1{
+    background-color: #4CAF50;
 }
 
 header h1 {
@@ -72,3 +72,53 @@ header h1 {
 .card-body {
     display: inline-block;
 }
+
+#boton-comentarios {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;
+  }
+  
+  #contenedor-comentarios {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+  }
+  
+  .oculto {
+    transform: translateX(-100%);
+  }
+  
+  .comentario {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .comentarios-usuarios {
+    margin-bottom: 2rem;
+  }
+  .comentarios-usuarios p {
+    font-size: 14px;
+    text-align: justify;
+  }
+  .comentarios-usuarios h5{
+    font-size: 14px;
+  }
